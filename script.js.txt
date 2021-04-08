@@ -1,0 +1,51 @@
+//Hands-on Project 7-4
+//Jorge Suarez
+//04/7/21
+"use strict";
+var delivInfo = {};
+
+var delivSummary = document.getElementById("deliverTo");
+
+function processDeliveryInfo(){
+  
+delivInfo.addr = document.getElementById("addrinput").value;
+delivInfo.name = document.getElementById("nameinput").value;
+delivInfo.city = document.getElementById("cityinput").value;
+delivInfo.email = document.getElementById("emailinput").value;
+delivInfo.phone = document.getElementById("phoneinput").value;
+  
+   var prop;
+   for (prop in delivInfo){
+       delivSummary.innerHTML += "<p>" + delivInfo[prop] + "</p>";
+   }
+}
+
+function previewOrder()
+{
+   processDeliveryInfo();
+   //set the display style of the element to block
+   document.getElementsByTagName("section")[0].style.display = "block";
+}
+
+function createEventListener()
+{
+   var previewBtn = document.getElementById("previewBtn");
+   if (previewBtn.addEventListener)
+   {
+       previewBtn.addEventListener("click", previewOrder, false);
+   }
+   else if (previewBtn.attachEvent)
+   {
+       previewBtn.attachEvent("onclick", previewOrder);
+   }
+}
+
+
+if (window.addEventListener)
+{
+   window.addEventListener("load", createEventListener, false);
+}
+else if (window.attachEvent)
+{
+   window.attachEvent("onload", createEventListener);
+}
